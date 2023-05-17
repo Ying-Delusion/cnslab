@@ -1,0 +1,230 @@
+# Sample Configuration File for Kali Linux
+
+# Network Configuration
+IP_ADDRESS=192.168.0.100
+NETMASK=255.255.255.0
+GATEWAY=192.168.0.1
+DNS_SERVER=8.8.8.8
+
+# Proxy Configuration
+HTTP_PROXY=proxy.example.com:8080
+HTTPS_PROXY=proxy.example.com:8080
+
+# Package Management
+APT_SOURCES=/etc/apt/sources.list
+APT_REPO_URL=http://archive.kali.org/kali
+
+# User Configuration
+DEFAULT_USER=john
+PASSWORD_EXPIRY_DAYS=90
+HOME_DIRECTORY=/home/john
+
+# Security Configuration
+FIREWALL_ENABLED=true
+INTRUSION_PREVENTION_ENABLED=false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------
+gcd
+----------------------------------------------------------------------------------
+#include <stdio.h>
+int gcd(int a, int b)
+{
+    if (a == 0)
+        return b;
+    return gcd(b % a, a);
+}
+int main()
+{
+   int a, b;
+   
+    printf("enter the values of a and b\n");
+    scanf("%d%d", &a, &b);
+    printf("GCD(%d, %d) = %d\n", a, b, gcd(a, b));
+    return 0;
+}
+
+
+
+----------------------------------------------------------------------------------
+DES
+-----------------------------------------------------------------------------------
+import java.security.*;
+import javax.crypto.*;
+public class DES
+{
+public static void main(String[] argv) {
+try{
+System.out.println("Message Encryption Using DES Algorithm\n-------");
+KeyGenerator keygenerator = KeyGenerator.getInstance("DES");
+SecretKey myDesKey = keygenerator.generateKey();
+Cipher desCipher;
+desCipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+desCipher.init(Cipher.ENCRYPT_MODE, myDesKey);
+byte[] text = "Secret Information ".getBytes();
+System.out.println("Message [Byte Format] : " + text);
+System.out.println("Message : " + new String(text));
+byte[] textEncrypted = desCipher.doFinal(text);
+System.out.println("Encrypted Message: " + textEncrypted);
+desCipher.init(Cipher.DECRYPT_MODE, myDesKey);
+byte[] textDecrypted = desCipher.doFinal(textEncrypted);
+System.out.println("Decrypted Message: " + new
+String(textDecrypted));
+}catch(Exception e){
+e.printStackTrace();
+}
+}
+}
+
+-------------------------------------------------------------------------------------
+diffie
+-------------------------------------------------------------------------------------
+#include <stdio.h>
+int compute(int a, int m, int n)
+{
+    int r;
+    int y = 1;
+     while (m > 0)
+    {
+        r = m % 2;
+         if (r == 1) {
+            y = (y*a) % n;
+        }
+        a = a*a % n;
+        m = m / 2;
+    }
+     return y;
+}
+ int main()
+{
+    int p = 23;        
+    int g = 5;        
+    int a, b;    
+    int A, B;    
+    a = 6;        
+    A = compute(g, a, p);
+ 
+    b = 15;       
+    B = compute(g, b, p);
+ 
+    int keyA = compute(B, a, p);
+    int keyB = compute(A, b, p);
+ 
+    printf("Alice's secret key is %d\nBob's secret key is %d", keyA, keyB);
+    return 0;
+}
+
+--------------------------------------------------------------------------------
+caesar
+---------------------------------------------------------------------------------
+#include<stdio.h>
+#include<string.h> // Added string.h for using strlen()
+
+int main()
+{
+    char message[100], ch;
+    int i, key;
+    
+    printf("Enter a message to encrypt: ");
+    fgets(message, sizeof(message), stdin); // Replaced gets() with fgets() for safer input reading
+    
+    printf("Enter key: ");
+    scanf("%d", &key);
+    
+    for(i = 0; i < strlen(message); ++i){ // Changed the loop condition to use strlen()
+        ch = message[i];
+        
+        if(ch >= 'a' && ch <= 'z'){
+            ch = ch + key;
+            
+            if(ch > 'z'){
+                ch = ch - 'z' + 'a' - 1;
+            }
+            
+            message[i] = ch;
+        }
+        else if(ch >= 'A' && ch <= 'Z'){
+            ch = ch + key;
+            
+            if(ch > 'Z'){
+                ch = ch - 'Z' + 'A' - 1;
+            }
+            
+            message[i] = ch;
+        }
+    }
+    
+    printf("Encrypted message: %s", message);
+    
+    return 0;
+}
